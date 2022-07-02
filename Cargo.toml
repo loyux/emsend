@@ -1,0 +1,23 @@
+[package]
+name = "posmtp"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lettre = { version = "0.10.0", features = ["tokio1", "tokio1-native-tls"] }
+tokio = { version = "1.18.1", features = ["macros", "rt-multi-thread"] }
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.73"
+tracing-subscriber = "0.3.11"
+tracing = "0.1.35"
+axum = "0.5.7"
+toml = "*"
+clap = { version = "3.1.18", features = ["cargo"] }
+
+
+[[example]]
+name = "demo1"
+path = "/root/workspace/email_api/examples/demo1.rs"

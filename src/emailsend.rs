@@ -113,6 +113,30 @@ pub async fn generate_smtpclient_pool(
     Ok(async_pools_sender)
 }
 
+pub async fn generate_smtpclient_pool_use_config(
+    user: &str,
+    token: &str,
+) -> Result<AsyncSmtpTransport<Tokio1Executor>, Error> {
+    // info!("Read smtp config {:?} successful!", &cfg_path);
+    // let values: Value = toml::from_str(
+    // std::fs::read_to_string(cfg_path.as_os_str())
+    // .unwrap()
+    // .as_str(),
+    // )
+    // .unwrap();
+    info!("Starting connecting {}", &user);
+    let pools = PoolConfig::new().min_idle(0).max_size(10);
+    let async_pools_sender: AsyncSmtpTransport<Tokio1Executor> =
+        AsyncSmtpTransport::<Tokio1Executor>::relay("smtp.163.com")
+            .unwrap()
+            .credentials(Credentials::new(user.to_string(), token.to_string()))
+            .pool_config(pools)
+            .build();
+    // async_sender.send(email).await.unwrap();
+    info!("build pool complete");
+    Ok(async_pools_sender)
+}
+
 pub async fn healthy_check() -> impl IntoResponse {
     info!("do healthy_check, Healthy");
     "Healthy\n"

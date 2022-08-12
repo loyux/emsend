@@ -1,0 +1,4 @@
+user = "邮件账户xxx@xxx.com"
+token = "邮箱smtp生成的授权码"
+ipaddr = "127.0.0.1"
+port = 1234

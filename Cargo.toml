@@ -14,10 +14,8 @@ serde_json = "1.0.73"
 tracing-subscriber = "0.3.11"
 tracing = "0.1.35"
 axum = "0.5.7"
-toml = "*"
-clap = { version = "3.1.18", features = ["cargo"] }
+toml = "0.5.8"
+clap = { version = "3.1.18", features = ["derive"] }
+openssl = { version = "0.10.33", features = ["vendored"] }
 
 
-[[example]]
-name = "demo1"
-path = "/root/workspace/email_api/examples/demo1.rs"

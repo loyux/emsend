@@ -40,6 +40,7 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum SubCommands {
+    ///通过命令行参数运行
     Args {
         ///smtp 用户
         #[clap(value_parser, long)]
@@ -54,9 +55,10 @@ enum SubCommands {
         #[clap(value_parser, long, default_value = "127.0.0.1")]
         ipaddr: IpAddr,
     },
-    Config {
+    ///通过配置文件运行
+    Run {
         #[clap(value_parser, long)]
-        cfgpath: PathBuf,
+        config: PathBuf,
     },
 }
 
@@ -92,10 +94,10 @@ pub async fn cli_run() -> Result<(), anyhow::Error> {
                 .serve(app.into_make_service())
                 .await?;
         }
-        SubCommands::Config { cfgpath } => {
-            println!("{:?}", cfgpath);
+        SubCommands::Run { config } => {
+            println!("{:?}", config);
             let values: ServerConfig = toml::from_str(
-                std::fs::read_to_string(cfgpath.as_os_str())
+                std::fs::read_to_string(config.as_os_str())
                     .map_err(|_| tracing::error!("file not exist, please check the path"))
                     .unwrap()
                     .as_str(),

@@ -13,7 +13,7 @@ token = "邮箱smtp生成的授权码"
 ipaddr = "127.0.0.1"
 port = 1234
 ```
-运行 cargo run -- config --cfgpath /vdb/posmtp/cfg.toml
+运行 postmp run --config /vdb/posmtp/cfg.toml
 
 ## 通过命令行启动
 cargo run -- args --user xxxxxxxx@xx.com --token xxxxxxxxx 

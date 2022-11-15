@@ -17,3 +17,4 @@ axum = "0.5.7"
 toml = "0.5.8"
 clap = { version = "3.1.18", features = ["derive"] }
 openssl = { version = "0.10.33", features = ["vendored"] }
+rusqlite = "0.28.0"
